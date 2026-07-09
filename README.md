@@ -1,2 +1,2 @@
 # toyocar-mecanica
-website: https://vitolaoo.github.io/toyocar-mecanica/
+website: https://toyocar.com.br
