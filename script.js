@@ -58,3 +58,27 @@ window.addEventListener('resize', () => {
     index = 0; // Reseta o contador para evitar quebra de alinhamento
     updateSlider();
 });
+
+// Configurações do Supabase
+const SUPABASE_URL = "https://kfuadyvymgdydoptzgbh.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmdWFkeXZ5bWdkeWRvcHR6Z2JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMTAxMjMsImV4cCI6MjA5NjY4NjEyM30.oXW9c7wFHcRMamqSaOmQWZgs8Wwtbk8U7j3isTdXrnI";
+
+// Função silenciosa para registrar o acesso
+async function registrarAcesso() {
+    try {
+        await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_view`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            }
+        });
+    } catch (error) {
+        // Falha silenciosa para não quebrar a experiência do usuário se o banco falhar
+        console.error("Erro ao contabilizar acesso.");
+    }
+}
+
+// Executa automaticamente assim que a página termina de carregar
+document.addEventListener("DOMContentLoaded", registrarAcesso);
