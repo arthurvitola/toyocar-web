@@ -65,13 +65,17 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 async function registrarAcesso() {
     try {
-        // Coleta as informações técnicas do navegador
+        // Coleta o raio-x estatístico completo e anônimo do dispositivo
         const dadosAcesso = {
             p_user_agent: navigator.userAgent,
-            p_referrer: document.referrer || "Acesso Direto"
+            p_referrer: document.referrer || "Acesso Direto",
+            p_screen_width: window.screen.width,
+            p_screen_height: window.screen.height,
+            p_language: navigator.language,
+            p_client_time: new Date().toLocaleString("pt-BR") // Hora local do dispositivo do cliente
         };
 
-        // Envia os dados para a função RPC do Supabase
+        // Envia de forma silenciosa para o banco via RPC
         await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_view`, {
             method: 'POST',
             headers: {
@@ -82,10 +86,10 @@ async function registrarAcesso() {
             body: JSON.stringify(dadosAcesso)
         });
     } catch (error) {
-        // Falha silenciosa no console
+        // Falha silenciosa no console caso o banco fique indisponível
         console.error("Erro ao contabilizar acesso.");
     }
 }
 
-// Executa automaticamente ao carregar a página
+// Dispara a função assim que a estrutura da página termina de carregar
 document.addEventListener("DOMContentLoaded", registrarAcesso);
