@@ -72,7 +72,10 @@ async function registrarAcesso() {
             p_screen_width: window.screen.width,
             p_screen_height: window.screen.height,
             p_language: navigator.language,
-            p_client_time: new Date().toLocaleString("pt-BR") // Hora local do dispositivo do cliente
+            p_client_time: new Date().toLocaleString("pt-BR"), // Hora local do dispositivo do cliente
+            
+            // INCLUA ESTA LINHA EXATAMENTE AQUI:
+            p_client_id: "toyocar"
         };
 
         // Envia de forma silenciosa para o banco via RPC
