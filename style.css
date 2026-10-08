@@ -148,3 +148,33 @@ footer { text-align: center; padding: 25px 0; background: #111215; color: #66666
 .link-whats-texto a:hover {
     text-decoration: underline; /* Dá um leve destaque ao passar o mouse */
 }
+
+/* Estilo do botão de avaliação do Google */
+.botoes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-avaliar {
+    background: #2C2F33;
+    color: #FFF;
+    padding: 16px 32px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: 0.3s;
+    border: 1px solid #3A3F44;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-avaliar:hover {
+    background: #3A3F44;
+    border-color: #E31937;
+    transform: scale(1.03);
+}
